@@ -38,7 +38,7 @@ class _AuthFormState extends State<AuthForm> {
           );
         }
       } on FirebaseAuthException catch (e) {
-        _showErrorDialog(e.message ?? 'Ocorreu um erro inesperado.');
+        _showErrorDialog(e.message ?? 'Ocorreu um erro!');
       }
     }
   }
@@ -77,9 +77,10 @@ class _AuthFormState extends State<AuthForm> {
                   initialValue: _formData.name,
                   onChanged: (name) => _formData.name = name,
                   decoration: const InputDecoration(labelText: 'Nome'),
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Por favor, insira seu nome.';
+                  validator: (localName) {
+                    final name = localName ?? '';
+                    if (name.trim().length < 3) {
+                      return 'nome deve ter no minimo 3 letras.';
                     }
                     return null;
                   },
@@ -89,9 +90,10 @@ class _AuthFormState extends State<AuthForm> {
                 initialValue: _formData.email,
                 onChanged: (email) => _formData.email = email,
                 decoration: const InputDecoration(labelText: 'E-mail'),
-                validator: (value) {
-                  if (value == null || !value.contains('@')) {
-                    return 'Por favor, insira um e-mail válido.';
+                validator: (localEmail) {
+                  final email = localEmail ?? '';
+                  if (!email.contains('@')) {
+                    return 'Insira um e-mail válido.';
                   }
                   return null;
                 },
@@ -102,8 +104,9 @@ class _AuthFormState extends State<AuthForm> {
                 onChanged: (password) => _formData.password = password,
                 obscureText: true,
                 decoration: const InputDecoration(labelText: 'Senha'),
-                validator: (value) {
-                  if (value == null || value.length < 6) {
+                validator: (localSenha) {
+                  final senha = localSenha ?? '';
+                  if (senha.length < 6) {
                     return 'A senha deve ter pelo menos 6 caracteres.';
                   }
                   return null;
