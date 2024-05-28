@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:projeto_flutter2/models/auth_form_data.dart';
-import 'package:projeto_flutter2/screens/home_screen.dart';
+import 'package:banco_de_questoes/models/auth_form_data.dart';
+import 'package:banco_de_questoes/screens/home_screen.dart';
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});

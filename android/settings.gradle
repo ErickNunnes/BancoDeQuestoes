@@ -30,3 +30,4 @@ plugins {
 }
 
 include ":app"
+rootProject.name = 'banco_de_questoes'
